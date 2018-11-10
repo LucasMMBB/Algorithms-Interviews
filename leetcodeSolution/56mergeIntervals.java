@@ -8,7 +8,7 @@
  * }
  */
 class Solution {
-    // test case
+    // using priority queue
     public List<Interval> merge(List<Interval> intervals) {
         List<Interval> res = new ArrayList<>();
         if (intervals == null || intervals.size() == 0) { return res; }
@@ -41,8 +41,31 @@ class Solution {
         
         return res;
     }
+
+    // using Collection
+    public List<Interval> merge2(List<Interval> intervals) {
+        Collections.sort(intervals, new IntervalComparator());
+
+        // getLast() is from Deque interface
+        LinkedList<Interval> res = new LinkedList<>();
+        for (Interval interval : intervals) {
+            // if result is empty or previous interval has no overlap with current one
+            // add current intercal to result
+            // else update the previous interval's end value
+            if (res.isEmpty() || res.getLast().end < interval.start) {
+                res.add(interval);
+            } else {
+                res.getLast().end = Math.max(res.getLast().end, interval.end);
+            }
+        }
+
+        return res;
+    }
 }
 
+/**
+ * Customized Comparator class
+ * */
 public class IntervalComparator implements Comparator<Interval> {
     @Override
     public int compare(Interval a, Interval b) {
