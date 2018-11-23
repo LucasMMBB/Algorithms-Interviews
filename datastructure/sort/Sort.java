@@ -1,8 +1,32 @@
 import java.util.Random;
 
+
+/**
+ * Sorting Algorithms
+ */
 public class Sort {
+    /**
+     * quick sort
+     */
     public static void quickSort(int[] nums){
         sort(nums, 0, nums.length - 1);
+    }
+
+    /**
+     * insertion sort
+     * time: O(n^2)
+     * space: O(1)
+     */
+    public static void insertSort(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            int element = nums[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > element) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = element;
+        }
     }
 
     private static void sort(int[] nums, int lo, int hi){
