@@ -21,11 +21,11 @@ public class Sort {
         for (int i = 1; i < nums.length; i++) {
             int element = nums[i];
             int j = i - 1;
-            while (j >= 0 && arr[j] > element) {
-                arr[j + 1] = arr[j];
+            while (j >= 0 && nums[j] > element) {
+                nums[j + 1] = nums[j];
                 j--;
             }
-            arr[j + 1] = element;
+            nums[j + 1] = element;
         }
     }
 
